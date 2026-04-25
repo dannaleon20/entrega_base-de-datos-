@@ -46,11 +46,8 @@ void setup() {
 void draw() {
   background(20);
 
-  drawSilueta(width/2, height/2);
-
   for (int i = 0; i < top.length; i++) {
     top[i].dibujar();
-    top[i].mostrarNombreSiHover();
   }
 
   if (seleccion != -1) {
@@ -58,33 +55,18 @@ void draw() {
     Cancion c = top[seleccion];
 
     fill(255);
-    textSize(20);
-    text(c.nombre, width/2, 80);
+    textSize(26);
+    text(c.nombre, width/2, height/2 - 10);
 
-    textSize(14);
-    text(c.artista, width/2, 105);
+    textSize(16);
+    text(c.artista, width/2, height/2 + 20);
+
 
     text("Danceability: " + nf(c.dance, 0, 1) + "%", width/2, height - 60);
     text("Energy: " + nf(c.energy, 0, 1) + "%", width/2, height - 40);
   }
 }
 
-
-void drawSilueta(float x, float y) {
-
-  stroke(255);
-  strokeWeight(5);
-  noFill();
-
-  ellipse(x, y-110, 50, 50);
-  line(x, y-85, x, y+40);
-
-  line(x, y-50, x-60, y-10);
-  line(x, y-50, x+60, y-20);
-
-  line(x, y+40, x-40, y+110);
-  line(x, y+40, x+40, y+110);
-}
 
 void mousePressed() {
 
@@ -128,15 +110,5 @@ class Cancion {
     noStroke();
     fill(c);
     ellipse(x, y, radio*2, radio*2);
-  }
-
-  void mostrarNombreSiHover() {
-
-    if (dist(mouseX, mouseY, x, y) < radio) {
-
-      fill(255);
-      textSize(12);
-      text(nombre, x, y-radio-10);
-    }
   }
 }
